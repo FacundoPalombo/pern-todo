@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  webapp-todo:
+    container_name: webapp-todo
+    build:
+      context: ./frontend/webapp-todo/
+      dockerfile: Dockerfile
+    volumes:
+      - "/frontend/webapp-todo:/app"
+      - "/app/node_modules"
+    ports:
+      - "3000:3000"
+    restart: on-failure
+    environment:
+      - NODE_ENV=development
+    stdin_open: true
+  api-todo:
+    container_name: api-todo
+    build:
+      context: ./services/api-todo/
+      dockerfile: Dockerfile
+    volumes:
+      - "/services/api-todo:/app"
+      - "/app/node_modules"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db-todo
+    restart: on-failure
+    environment:
+      - NODE_ENV=development
+  db-todo:
+    image: postgres:latest
+    container_name: db-todo
+    volumes:
+      - "/database/db-data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    environment:
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: db-todo
+  pg-admin:
+    image: dpage/pgadmin4:latest
+    container_name: pg-admin-db-todo
+    ports:
+      - "54105:80"
+    restart: on-failure
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "facundo.palombo@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+    depends_on:
+      - db-todo

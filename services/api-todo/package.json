@@ -1,0 +1,30 @@
+{
+  "name": "api-todo",
+  "version": "1.0.0",
+  "description": "Api de tareas",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "api",
+    "todo",
+    "react",
+    "pern"
+  ],
+  "author": "Facundo Palombo",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.0.0",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^14.1.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.2",
+    "winston": "^3.2.1"
+  }
+}
