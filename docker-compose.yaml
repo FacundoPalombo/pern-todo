@@ -34,20 +34,24 @@ services:
     image: postgres:latest
     container_name: db-todo
     volumes:
-      - "/database/db-data:/var/lib/postgresql/data"
+      - "/database/db-data:/postgres/data"
+      - "/database/postgresql.conf:/etc/postgresql/postgresql.conf"
     ports:
       - "5432:5432"
     restart: on-failure
     environment:
       POSTGRES_USER: "admin"
       POSTGRES_PASSWORD: "1234"
-      POSTGRES_DB: db-todo
+      POSTGRES_DB: "db-todo"
+      PGDATA: /postgres/data
   pg-admin:
     image: dpage/pgadmin4:latest
-    container_name: pg-admin-db-todo
+    container_name: pg-admin
     ports:
       - "54105:80"
     restart: on-failure
+    volumes:
+      - /database/pgadmin:/root/.pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: "facundo.palombo@gmail.com"
       PGADMIN_DEFAULT_PASSWORD: "1234"
