@@ -8,7 +8,7 @@ WORKDIR /app
 #install dependencies
 RUN npm install
 #App data
-COPY [".", "/app/"]
+COPY . .
 #port
 EXPOSE 3000:3000
 CMD ["npm", "start"]

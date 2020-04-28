@@ -8,7 +8,7 @@ WORKDIR /app
 #install dependencies
 RUN npm install
 #App data
-COPY [".", "/app/"]
+COPY . .
 #port
 EXPOSE 3001:3001
 EXPOSE 5432:5432
