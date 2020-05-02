@@ -29,7 +29,11 @@ services:
       - db-todo
     restart: on-failure
     environment:
-      - NODE_ENV=development
+      NODE_ENV: "development"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: "db-todo"
+      POSTGRES_HOST: "db-todo"
   db-todo:
     image: postgres:latest
     container_name: db-todo

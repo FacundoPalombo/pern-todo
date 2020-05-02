@@ -9,11 +9,11 @@ app.post("/todos", async (req, res) => {
     const { description } = req.body;
     const newTodo = await db.query(
       `
-    INSERT INTO db-todo (description) VALUES($1) RETURNING *
+    INSERT INTO todo (description) VALUES($1) RETURNING *
     `,
       [description]
     );
-    res.json(newTodo.rows[0]);
+    res.status(200).json(newTodo.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
@@ -23,8 +23,8 @@ app.post("/todos", async (req, res) => {
 
 app.get("/todos", async (req, res) => {
   try {
-    const allTodos = await db.query("SELECT * FROM db-todo");
-    res.json(allTodos.rows);
+    const allTodos = await db.query("SELECT * FROM todo");
+    res.status(200).json(allTodos.rows);
   } catch (error) {
     console.error(error.message);
   }
@@ -35,11 +35,24 @@ app.get("/todos", async (req, res) => {
 app.get("/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const todo = await db.query('SELECT * FROM db-todo WHERE id="$1"', [id]);
-    req.json(todo.rows[0]);
+    const todo = await db.query(`SELECT * FROM todo WHERE id = $1`, [id]);
+    res.status(200).json(todo.rows[0]);
   } catch (error) {
     console.error(error.message);
   }
+});
+
+app.use('/actuator', (req,res) => {
+  res.status(200).json({
+    status: "up",
+    message: "This is the healthcheck endpoint"
+  })
+})
+
+app.use("*", (req, res) => {
+  res.status(404).json({
+    message: 'Wrong place'
+  });
 });
 
 module.exports = { routes: app };
