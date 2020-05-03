@@ -4,13 +4,14 @@ services:
   webapp-todo:
     container_name: webapp-todo
     build:
-      context: ./frontend/webapp-todo/
+      context: ./frontend/webapp-todo
       dockerfile: Dockerfile
     volumes:
       - "/app/node_modules"
       - "./frontend/webapp-todo:/app/"
     ports:
       - "3000:3000"
+      - "9009:9009"
     restart: on-failure
     environment:
       - NODE_ENV=development
@@ -18,7 +19,7 @@ services:
   api-todo:
     container_name: api-todo
     build:
-      context: ./services/api-todo/
+      context: ./services/api-todo
       dockerfile: Dockerfile
     volumes:
       - "/app/node_modules"

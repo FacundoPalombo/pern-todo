@@ -55,7 +55,7 @@ For pgadmin initialization follow the next steps:
     "description": "your description"
   }
   ``` 
-  - UPDATE: `/todos/:id` - Update todo
+  - PUT: `/todos/:id` - Update todo
   ```json
   "body": {
     "description": "your description"

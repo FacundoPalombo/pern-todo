@@ -10,5 +10,6 @@ RUN npm install
 #App data
 COPY . .
 #port
+EXPOSE 9009:9009
 EXPOSE 3000:3000
 CMD ["npm", "start"]
