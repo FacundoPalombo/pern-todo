@@ -22,7 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "coverage": "npm test -- --coverage --watchAll"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,5 +53,21 @@
     "@storybook/react": "^5.3.18",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/*.story.*",
+      "!src/**/*.stories.*",
+      "!coverage/**",
+      "!node_modules/**",
+      "!src/index.js",
+      "!src/src/setupTests.js",
+      "!public/**",
+      "!build/**",
+      "!setupTests.js",
+      "!src/setupProxy.js",
+      "!src/serviceWorker.js"
+    ]
   }
 }

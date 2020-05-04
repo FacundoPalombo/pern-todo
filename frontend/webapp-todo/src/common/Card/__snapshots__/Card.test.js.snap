@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GIVEN Card common component THEN should render 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  />
+</DocumentFragment>
+`;

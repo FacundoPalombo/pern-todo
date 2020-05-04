@@ -1,5 +1,6 @@
 import React from "react";
 import actions from "./actions";
+import { connect } from "react-redux";
 import { Home } from "modules";
 const stpSchema = {};
 const dtpSchema = { ...actions };

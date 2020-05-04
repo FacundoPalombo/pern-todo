@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { Link, Switch, BrowserRouter, Route } from "react-router-dom";
-import { IoIosAddCircle } from "react-icons/io";
+import { HomeContainer } from "container/Home";
 
 const initialState = {};
 const store = createStore(() => initialState);
@@ -13,17 +13,12 @@ function App() {
       this is an article and THIS IS A <Link to="/hello">REDIRECT</Link>
     </article>
   );
-  const micomp2 = () => (
-    <>
-      <IoIosAddCircle size="50px" /> Hello world in react router
-    </>
-  );
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/home" component={micomp2} />
-          <Route path="/" component={micomponente} />
+          <Route path="/home" component={HomeContainer} />
+          <Route path="/" component={HomeContainer} />
         </Switch>
       </BrowserRouter>
     </Provider>
